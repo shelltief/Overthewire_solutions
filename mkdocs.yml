@@ -42,8 +42,13 @@ nav:
     - Level 31 -> 32: 'bandit/docs/bandit31.md'
     - Level 32 -> 33: 'bandit/docs/bandit32.md'
     - Level 33 -> 34: 'bandit/docs/bandit33.md'
+  - About:
+    - License: 'license.md'
 
 docs_dir: challenges
+
+exclude_docs: |
+  work/
 
 plugins:
   - search
