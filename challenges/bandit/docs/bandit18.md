@@ -23,33 +23,29 @@ is invoked as an interactive shell that is not a login shell (see [bash invocati
 What we are going to do is to find out how to retrieve the `readme` file from bandit18 home directory.
 
 
-<details>
-<summary><h3 style="display:inline-block">Part 1 : Running a command on the remote host</h3></summary>
+??? note "Part 1 : Running a command on the remote host"
 
-As we are anyway login in using the ssh protocol, we need to find a way to run a command non-interactively on the remote host.
-<details>
-<summary>Hint</summary>
+    As we are anyway login in using the ssh protocol, we need to find a way to run a command
+    non-interactively on the remote host.
 
-Once again, look into the [ssh](https://man.openbsd.org/ssh) man page, find a way to execute a command on the remote host instead of an interactive shell.
-</details>
+    ??? tip "Hint"
 
-<details>
-<summary>Solution</summary>
+        Once again, look into the [ssh](https://man.openbsd.org/ssh) man page, find a way
+        to execute a command on the remote host instead of an interactive shell.
 
-To do so, we just need to append the command we want to run at the end of our ssh command, it will then be run instead of an interactive shell when we log in 
-into the user bandit18. Our ssh command is the following :
-```bash
-ssh -l bandit18 -p 2220 bandit.labs.overthewire.org cat readme
-```
-Because we need to `cat` the readme file in bandit18 home directory. It will print the password string to sdout and exit.
-</details>
-</details>
+    ??? success "Solution"
 
-<details>
-<summary><h3 style="display:inline-block">Full Solution</h3></summary>
+        To do so, we just need to append the command we want to run at the end of our ssh command,
+        it will then be run instead of an interactive shell when we log in into the user bandit18.
+        Our ssh command is the following :
+        ```bash
+        ssh -l bandit18 -p 2220 bandit.labs.overthewire.org cat readme
+        ```
+        Because we need to `cat` the readme file in bandit18 home directory.
+        It will print the password string to sdout and exit.
 
-1. `ssh ssh://bandit18@bandit.labs.overthewire.org:2220 cat readme` to cat the readme file in bandit18 home directory.
+??? note "Full Solution"
 
-</details>
+    1. `ssh ssh://bandit18@bandit.labs.overthewire.org:2220 cat readme` to cat the readme file in bandit18 home directory.
 
 You can now jump to the [next level](./bandit19.md)

@@ -22,59 +22,53 @@ The only thing we have in our directory is an executable called `bandit20-do`, t
 execute it without arguments to find out how to use it.
 
 
-<details>
-<summary><h3 style="display:inline-block">Part 1 : Using the setuid binary</h3></summary>
+??? note "Part 1 : Using the setuid binary"
 
-When running the executable without arguments, we see the following : 
-```bash
-Run a command as another user.
-  Example: ./bandit20-do id
-```
-We need to find out how to use this executable to print the password for the next level on stdout.
+    When running the executable without arguments, we see the following :
+    ```bash
+    Run a command as another user.
+      Example: ./bandit20-do id
+    ```
+    We need to find out how to use this executable to print the password for the next level on stdout.
 
-<details>
-<summary>Hint</summary>
+    ??? tip "Hint"
 
-Using the example of the `bandit20-do` executable, can you figure out the command to execute to print the bandit20 password to stdout?
-</details>
+        Using the example of the `bandit20-do` executable, can you figure out the command
+        to execute to print the bandit20 password to stdout?
 
-<details>
-<summary>Solution</summary>
+    ??? success "Solution"
 
-When running the example, we can see the following output : 
-```bash
-bandit19@bandit:~$ ./bandit20-do id
-uid=11019(bandit19) gid=11019(bandit19) euid=11020(bandit20) groups=11019(bandit19)
-bandit19@bandit:~$
-```
-We can see that our effective user id (euid) is bandit20 when we run this executable, which means that we can do everything that the user 
-bandit20 can do.
+        When running the example, we can see the following output :
+        ```bash
+        bandit19@bandit:~$ ./bandit20-do id
+        uid=11019(bandit19) gid=11019(bandit19) euid=11020(bandit20) groups=11019(bandit19)
+        bandit19@bandit:~$
+        ```
+        We can see that our effective user id (euid) is bandit20 when we run this executable,
+        which means that we can do everything that the user bandit20 can do.
 
-By running the [stat](https://www.gnu.org/software/coreutils/manual/coreutils.html#stat-invocation) command on the file `/etc/bandit_pass/bandit20` 
-we see the following output :
-```bash
-  File: /etc/bandit_pass/bandit20
-  Size: 33        	Blocks: 8          IO Block: 4096   regular file
-Device: 10301h/66305d	Inode: 517599      Links: 1
-Access: (0400/-r--------)  Uid: (11020/bandit20)   Gid: (11020/bandit20)
-Access: 2024-06-04 21:38:04.747961484 +0000
-Modify: 2023-10-05 06:19:06.591227890 +0000
-Change: 2023-10-05 06:19:06.595227900 +0000
- Birth: 2023-10-05 06:19:06.591227890 +0000
-```
-This tells us that the file is only readable by the user bandit20, however thanks to the `bandit20-do` executable, we are the user bandit20. We can 
-thus `cat` this file and retrieve the password string.<br/>
-Here is the final command :
-```bash
-./bandit20-do cat /etc/bandit_pass/bandit20
-```
-</details>
-</details>
+        By running the [stat](https://www.gnu.org/software/coreutils/manual/coreutils.html#stat-invocation)
+        command on the file `/etc/bandit_pass/bandit20` we see the following output :
+        ```bash
+          File: /etc/bandit_pass/bandit20
+          Size: 33        	Blocks: 8          IO Block: 4096   regular file
+        Device: 10301h/66305d	Inode: 517599      Links: 1
+        Access: (0400/-r--------)  Uid: (11020/bandit20)   Gid: (11020/bandit20)
+        Access: 2024-06-04 21:38:04.747961484 +0000
+        Modify: 2023-10-05 06:19:06.591227890 +0000
+        Change: 2023-10-05 06:19:06.595227900 +0000
+         Birth: 2023-10-05 06:19:06.591227890 +0000
+        ```
+        This tells us that the file is only readable by the user bandit20, however thanks to the
+        `bandit20-do` executable, we are the user bandit20. We can thus `cat` this file and retrieve
+        the password string.<br/>
+        Here is the final command :
+        ```bash
+        ./bandit20-do cat /etc/bandit_pass/bandit20
+        ```
 
-<details>
-<summary><h3 style="display:inline-block">Full Solution</h3></summary>
+??? note "Full Solution"
 
-1.	`./bandit20-do cat /etc/bandit_pass/bandit20` to print the password string on stdout.
-</details>
+    1.	`./bandit20-do cat /etc/bandit_pass/bandit20` to print the password string on stdout.
 
 You can now jump to the [next level](./bandit20.md)

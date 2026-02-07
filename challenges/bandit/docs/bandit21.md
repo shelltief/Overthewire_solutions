@@ -24,54 +24,48 @@ to need to analyse the cron jobs for the users involved in this series of level 
 from this analysis. Let's start with the level21.
 
 
-<details>
-<summary><h3 style="display:inline-block">Part 1 : Retrieving the cronjob for the user bandit22</h3></summary>
+??? note "Part 1 : Retrieving the cronjob for the user bandit22"
 
-Our goal here is to know which script is executed by the cronjob on the session of user bandit22.
+    Our goal here is to know which script is executed by the cronjob on the session of user bandit22.
 
-<details>
-<summary>Hint</summary>
+    ??? tip "Hint"
 
-By analysing the files into the `/etc/cron.d` directory, can you retrieve the contents of the script that runs for the 
-bandit22 user?
-</details>
+        By analysing the files into the `/etc/cron.d` directory, can you retrieve the contents of the
+        script that runs for the bandit22 user?
 
-<details>
-<summary>Solution</summary>
+    ??? success "Solution"
 
-Here is the output from the `ls` command for the `/etc/crond.d` directory :
-```bash
-bandit21@bandit:~$ ls /etc/cron.d
-cronjob_bandit15_root  cronjob_bandit17_root  cronjob_bandit22  cronjob_bandit23  cronjob_bandit24  cronjob_bandit25_root  e2scrub_all  otw-tmp-dir  sysstat
-bandit21@bandit:~$
-```
-We see that there is a file named `cronjob_bandit22` in the directory. Let's `cat` the contents of this file :
-```bash
-bandit21@bandit:~$ cat /etc/cron.d/cronjob_bandit22
-@reboot bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null
-* * * * * bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null
-bandit21@bandit:~$
-```
-This shows us that there is a cronjob running every minute for the user bandit22. We are going to go on and print the contents of the script : 
-```bash
-bandit21@bandit:~$ cat /usr/bin/cronjob_bandit22.sh 
-#!/bin/bash
-chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
-cat /etc/bandit_pass/bandit22 > /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
-bandit21@bandit:~$
-```
-This finally tells us that the password for the user bandit22 is stored in the temporary file which name is written in the script and that is readable by everyone.
+        Here is the output from the `ls` command for the `/etc/crond.d` directory :
+        ```bash
+        bandit21@bandit:~$ ls /etc/cron.d
+        cronjob_bandit15_root  cronjob_bandit17_root  cronjob_bandit22  cronjob_bandit23  cronjob_bandit24  cronjob_bandit25_root  e2scrub_all  otw-tmp-dir  sysstat
+        bandit21@bandit:~$
+        ```
+        We see that there is a file named `cronjob_bandit22` in the directory. Let's `cat` the contents of this file :
+        ```bash
+        bandit21@bandit:~$ cat /etc/cron.d/cronjob_bandit22
+        @reboot bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null
+        * * * * * bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null
+        bandit21@bandit:~$
+        ```
+        This shows us that there is a cronjob running every minute for the user bandit22.
+        We are going to go on and print the contents of the script :
+        ```bash
+        bandit21@bandit:~$ cat /usr/bin/cronjob_bandit22.sh 
+        #!/bin/bash
+        chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+        cat /etc/bandit_pass/bandit22 > /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+        bandit21@bandit:~$
+        ```
+        This finally tells us that the password for the user bandit22 is stored in
+        the temporary file which name is written in the script and that is readable by everyone.
 
-We can go on and finally retrieve this password to jump to the next level.
-</details>
-</details>
+        We can go on and finally retrieve this password to jump to the next level.
 
-<details>
-<summary><h3 style="display:inline-block">Full Solution</h3></summary>
+??? note "Full Solution"
 
-1. `cat /etc/cron.d/cronjob_bandit22` to know which cron job is executed for the user bandit22.
-2. `cat /usr/bin/cronjob_bandit22.sh` to view the contents of the script that the cron job for user bandit22 runs
-3. `cat tmpfile` to print the password string on stdout.
-</details>
+    1. `cat /etc/cron.d/cronjob_bandit22` to know which cron job is executed for the user bandit22.
+    2. `cat /usr/bin/cronjob_bandit22.sh` to view the contents of the script that the cron job for user bandit22 runs
+    3. `cat tmpfile` to print the password string on stdout.
 
 You can now jump to the [next level](./bandit22.md)

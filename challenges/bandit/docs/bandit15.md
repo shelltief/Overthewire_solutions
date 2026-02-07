@@ -24,61 +24,53 @@ I'm only going to show how to use the `s_client` command from the `openssl` prog
 communicate with our server.
 
 
-<details>
-<summary><h3 style="display:inline-block">Part 1 : Communicating with the SSL server</h3></summary>
+??? note "Part 1 : Communicating with the SSL server"
 
-Our first goal is to lean how to open a connection with our SSL server, to do so we are going to use the [s\_client](https://www.openssl.org/docs/man1.0.2/man1/s_client.html) command.
-
-
-<details>
-<summary>Hint</summary>
-
-By looking at the [s\_client](https://www.openssl.org/docs/man1.0.2/man1/s_client.html) man page and only looking for the fields that talk about **connecting** to the SSL server, 
-can you figure out a way to open a connection with the server? *The server will read all its input from stdin*
-</details>
-
-<details>
-<summary>Solution</summary>
-
-By running the command `openssl s_client localhost:30001` or `openssl s_client -connect localhost:30001`, you can open a connection with the server.
-</details>
-</details>
+    Our first goal is to lean how to open a connection with our SSL server, to do so we are going
+    to use the [s\_client](https://www.openssl.org/docs/man1.0.2/man1/s_client.html) command.
 
 
-<details>
-<summary><h3 style="display:inline-block">Part 2 : Sending the password to the server using the client</h3></summary>
+    ??? tip "Hint"
 
-Now that we've opened a connection to the server, we want to send the password. We could copy and paste the password, press enter and then ^C the client 
-and it would actually work but this is not what we are going to do here.
+        By looking at the [s\_client](https://www.openssl.org/docs/man1.0.2/man1/s_client.html) man page and
+        only looking for the fields that talk about **connecting** to the SSL server,
+        can you figure out a way to open a connection with the server? *The server will read all its input from stdin*
 
-As the password is contained within the file `/etc/bandit_pass/bandit15`, it would be way easier to just redirect the input from that file. However, when we 
-do it like this, no password appears on the standard output. Our goal is to fix that issue.
+    ??? success "Solution"
 
+        By running the command `openssl s_client localhost:30001` or `openssl s_client -connect localhost:30001`,
+        you can open a connection with the server.
 
-<details>
-<summary>Hint</summary>
+??? note "Part 2 : Sending the password to the server using the client"
 
-By looking at the **CONNECTED COMMANDS** section of the [s\_client](https://www.openssl.org/docs/man1.0.2/man1/s_client.html) man page, try to understand why we can 
-observe such a behavior and then, look at the **OPTIONS** section to see if you can retrieve an option that will fix this behavior.
-</details>
+    Now that we've opened a connection to the server, we want to send the password.
+    We could copy and paste the password, press enter and then ^C the client and it would actually work but
+    this is not what we are going to do here.
 
-<details>
-<summary>Solution</summary>
-
-We can observe such behavior because at the end of any file, there is an EOF character that is interpreted by our `s_client` command as a signal to close the connection. 
-By using the option `-ign_eof` we can explicitely tell `s_client` to keep the connection open, and thus receive the password from the server.<br/>
-Here is our final command :
-```bash
-openssl s_client -ign_eof localhost:30001 < /etc/bandit_pass/bandit15
-```
-</details>
-</details>
+    As the password is contained within the file `/etc/bandit_pass/bandit15`, it would be way easier to just
+    redirect the input from that file. However, when we do it like this, no password appears on the
+    standard output. Our goal is to fix that issue.
 
 
-<details>
-<summary><h3 style="display:inline-block">Full Solution</h3></summary>
+    ??? tip "Hint"
 
-1. `openssl s_client -quiet localhost:30001 < /etc/bandit_pass/bandit15` to retrieve the password from the SSL server
-</details>
+        By looking at the **CONNECTED COMMANDS** section of the
+        [s\_client](https://www.openssl.org/docs/man1.0.2/man1/s_client.html) man page,
+        try to understand why we can observe such a behavior and then, look at the **OPTIONS** section
+        to see if you can retrieve an option that will fix this behavior.
+
+    ??? success "Solution"
+
+        We can observe such behavior because at the end of any file, there is an EOF character that is interpreted by
+        our `s_client` command as a signal to close the connection. By using the option `-ign_eof` we can
+        explicitely tell `s_client` to keep the connection open, and thus receive the password from the server.<br/>
+        Here is our final command :
+        ```bash
+        openssl s_client -ign_eof localhost:30001 < /etc/bandit_pass/bandit15
+        ```
+
+??? note "Full Solution"
+
+    1. `openssl s_client -quiet localhost:30001 < /etc/bandit_pass/bandit15` to retrieve the password from the SSL server
 
 You can now jump to the [next level](./bandit16.md)
