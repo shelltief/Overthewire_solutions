@@ -18,128 +18,106 @@ The username is **bandit0** and the password is **bandit0**.
 
 We know that we need to use ssh to log into the game and already know that there is only one command that may be useful to solve the challenge. After reading about what is the secure shell on wikipedia, let's dive right into it and look into the [ssh man page](https://man7.org/linux/man-pages/man1/ssh.1.html)
 
-<summary><h3 style="display:inline-block">Part 1 : Host Specification</h3></summary>
+???+ note "Part 1 : Host Specification"
 
-Our first job is to find out how to specify the **host** that we're trying to connect to.
-<details>
-<summary>Hint</summary>
+    Our first job is to find out how to specify the **host** that we're trying to connect to.
 
-Look in the ssh man page, in the <b style="color:red">DESCRIPTION</b> section, right after the <b style="color:red">SYNOPSIS</b> there should be, near the beginning, the name of an item that could already be found in the <b style="color:red">SYNOPSIS</b> section
-</details>
+    ??? tip "Hint"
 
-<details>
-<summary>Solution</summary>
+        Look in the ssh man page, in the <b style="color:red">DESCRIPTION</b> section,
+        right after the <b style="color:red">SYNOPSIS</b> there should be, near the beginning,
+        the name of an item that could already be found in the <b style="color:red">SYNOPSIS</b> section
 
-The argument we are looking for is the one name **destination** this argument is the **host** we are trying to connect to. <br/>
-For now, our command looks like : `ssh bandit.labs.overthewire.org`
-</details>
-</details>
+    ??? success "Solution"
 
+        The argument we are looking for is the one name **destination** this argument is the **host**
+        we are trying to connect to. <br/>
+        For now, our command looks like : `ssh bandit.labs.overthewire.org`
 
-<details>
-<summary><h3 style="display:inline-block">Part 2 : Port Specification</h3></summary>
+??? note "Part 2 : Port Specification"
 
-After running this command, we can see the following prompt in the terminal :
+    After running this command, we can see the following prompt in the terminal :
 
-```bash
+    ```bash
 
-                      This is an OverTheWire game server. 
-            More information on http://www.overthewire.org/wargames
+                          This is an OverTheWire game server. 
+                More information on http://www.overthewire.org/wargames
 
-!!! You are trying to log into this SSH server on port 22, which is not intended.
+    !!! You are trying to log into this SSH server on port 22, which is not intended.
 
-Charystag@bandit.labs.overthewire.org: Permission denied (publickey).
+    shelltief@bandit.labs.overthewire.org: Permission denied (publickey).
 
-```
+    ```
 
-So we need to use the **port** that was specified in the challenge rules
+    So we need to use the **port** that was specified in the challenge rules
 
-<details>
-<summary>Hint</summary>
+    ??? tip "Hint"
 
-Try to look again in the **SYNOPSIS** and **DESCRIPTION** sections of the ssh man page and see if you can manage to find how to specify a port to connect to the remote host
-</details>
+        Try to look again in the **SYNOPSIS** and **DESCRIPTION** sections of the ssh
+        man page and see if you can manage to find how to specify a port to connect to the remote host
 
-<details>
-<summary>Solution</summary>
+    ??? success "Solution"
 
-Using the `-p` option allows us to specify a port to connect to. Our updated command ends up looking like this : 
-```bash
-ssh -p 2220 bandit.labs.overthewire.org
-```
+        Using the `-p` option allows us to specify a port to connect to. Our updated command ends up looking like this : 
+        ```bash
+        ssh -p 2220 bandit.labs.overthewire.org
+        ```
 
-> :bulb: It is a good practice to put all option arguments before any non-option argument
+        > :bulb: It is a good practice to put all option arguments before any non-option argument
 
-</details>
-</details>
+??? note "Part 3 : Username Specification"
 
+    Now that we specified the port to connect to, we can see the following prompt :
 
-<details>
-<summary><h3 style="display:inline-block">Part 3 : Username Specification</h3></summary>
+    ```bash
+                             _                     _ _ _   
+                            | |__   __ _ _ __   __| (_) |_ 
+                            | '_ \ / _` | '_ \ / _` | | __|
+                            | |_) | (_| | | | | (_| | | |_ 
+                            |_.__/ \__,_|_| |_|\__,_|_|\__|
+                                                           
 
-Now that we specified the port to connect to, we can see the following prompt :
+                          This is an OverTheWire game server. 
+                More information on http://www.overthewire.org/wargames
 
-```bash
-                         _                     _ _ _   
-                        | |__   __ _ _ __   __| (_) |_ 
-                        | '_ \ / _` | '_ \ / _` | | __|
-                        | |_) | (_| | | | | (_| | | |_ 
-                        |_.__/ \__,_|_| |_|\__,_|_|\__|
-                                                       
+    !!! You are trying to log into this SSH server on port 2220 with a username
+    !!! that does not match the bandit game.
 
-                      This is an OverTheWire game server. 
-            More information on http://www.overthewire.org/wargames
+    Charystag@bandit.labs.overthewire.org's password: 
 
-!!! You are trying to log into this SSH server on port 2220 with a username
-!!! that does not match the bandit game.
+    ```
 
-Charystag@bandit.labs.overthewire.org's password: 
+    and when we try to input the provided password : `bandit0`, we get the following response :
 
-```
+    ```bash
 
-and when we try to input the provided password : `bandit0`, we get the following response :
+    Permission denied, please try again.
+    Charystag@bandit.labs.overthewire.org's password: 
 
-```bash
+    ```
 
-Permission denied, please try again.
-Charystag@bandit.labs.overthewire.org's password: 
+    The important information is : **with a username that does not match the bandit game**.
+    This tells us that we'll need to specify our username to successfully connect to level bandit0
 
-```
+    ??? tip "Hint"
 
-The important information is : **with a username that does not match the bandit game**.
-This tells us that we'll need to specify our username to successfully connect to level bandit0
+        Once again, you have to look into the sections **SYNOPSIS** and **DESCRIPTION** of the ssh man page.<br/>
+        The argument you are looking for is now one that allows you to log in as a given user on a remote machine.
 
-<details>
-<summary>Hint</summary>
+    ??? success "Solution"
 
-Once again, you have to look into the sections **SYNOPSIS** and **DESCRIPTION** of the ssh man page.<br/>
-The argument you are looking for is now one that allows you to log in as a given user on a remote machine.
+        Using the `-l` option allows us to specify the user that we want to log into on the remote machine. <br/>
+        Our full command looks like : `ssh -p 2220 -l bandit0 bandit.labs.overthewire.org`.
+        Once we get the login prompt, we can now enter the password and successfully login to the first level.
 
-</details>
+??? note "Full Solution"
 
-<details>
-<summary>Solution</summary>
+    The full command is :
 
-Using the `-l` option allows us to specify the user that we want to log into on the remote machine. <br/>
-Our full command looks like : `ssh -p 2220 -l bandit0 bandit.labs.overthewire.org`.
-Once we get the login prompt, we can now enter the password and successfully login to the first level.
+    ```bash
+    ssh -p 2220 -l bandit0 bandit.labs.overthewire.org
+    ```
 
-</details>
-
-</details>
-
-
-<details>
-<summary><h3 style="display:inline-block">Full Solution</h3></summary>
-
-The full command is :
-
-```bash
-ssh -p 2220 -l bandit0 bandit.labs.overthewire.org
-```
-
-Once we get the login prompt, we can then enter the password **bandit0** to successfully complete the bandit0 challenge.
-
-</details>
+    Once we get the login prompt, we can then enter the password **bandit0** to successfully complete the bandit0 challenge.
 
 You can now solve the [first level](./bandit0.md)

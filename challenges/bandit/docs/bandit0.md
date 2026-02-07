@@ -23,70 +23,52 @@ First thing to know is that when we log as a user we end up in the user home dir
 That is how we know that we automatically begin in user **bandit0** home directory.
 
 
-<details>
-<summary><h3 style="display:inline-block">Part 1 : Listing Files</h3></summary>
+??? note "Part 1 : Listing Files"
 
+    ??? tip "Hint"
 
-<details>
-<summary>Hint</summary>
+        Why don't you look into the [ls](https://www.gnu.org/software/coreutils/manual/coreutils.html#ls-invocation) 
+        man page to ensure that the file you're looking for is really there?
 
-Why don't you look into the [ls](https://www.gnu.org/software/coreutils/manual/coreutils.html#ls-invocation) 
-man page to ensure that the file you're looking for is really there?
+    ??? success "Solution"
 
-</details>
+        The command we are looking for is `ls`.
+        This will allow us to list the directory files and ensure that the file we are looking for is there
 
-<details>
-<summary>Solution</summary>
+??? note "Part 2 : Printing File"
 
-The command we are looking for is `ls`. This will allow us to list the directory files and ensure that the file we are looking for is there
-</details>
-</details>
+    After running the command `ls`, you should get this output :
 
+    ```bash
+    bandit0@bandit:~$ ls
+    readme
+    bandit0@bandit:~$
+    ```
 
-<details>
-<summary><h3 style="display:inline-block">Part 2 : Printing File</h3></summary>
+    Now we need to know how to print the contents of the readme file
 
+    ??? tip "Hint"
 
-After running the command `ls`, you should get this output :
+        Same as before, we can look into the
+        [cat](https://www.gnu.org/software/coreutils/manual/coreutils.html#cat-invocation) man page
+        to get to know the `cat` utility.
 
-```bash
-bandit0@bandit:~$ ls
-readme
-bandit0@bandit:~$
-```
+    ??? success "Solution"
 
-Now we need to know how to print the contents of the readme file
-<details>
-<summary>Hint</summary>
+        The command we're looking for is `cat readme`. It will allow us to retrieve the contents of the readme file.
 
-Same as before, we can look into the [cat](https://www.gnu.org/software/coreutils/manual/coreutils.html#cat-invocation) 
-man page to get to know the `cat` utility.
+??? note "Full Solution"
 
-</details>
+    The command `cat readme` will output a prompt similar to this one
 
-<details>
-<summary>Solution</summary>
+    ```bash
+    bandit0@bandit:~$ cat readme
+    password_string
+    bandit0@bandit:~$
+    ```
 
-The command we're looking for is `cat readme`. It will allow us to retrieve the contents of the readme file.
-</details>
-</details>
+    Where password\_string is a 33 alphanumeric characters password string.<br/>
 
+    We can then copy this string with ctrl+shift+c and paste it with ctrl+shift+v
 
-<details>
-<summary><h3 style="display:inline-block">Full Solution</h3></summary>
-
-The command `cat readme` will output a prompt similar to this one
-
-```bash
-bandit0@bandit:~$ cat readme
-password_string
-bandit0@bandit:~$
-```
-
-Where password\_string is a 33 alphanumeric characters password string.<br/>
-
-We can then copy this string with ctrl+shift+c and paste it with ctrl+shift+v
-
-</details>
-
-You can now jump to the [next level](./bandit1.md) 
+You can now jump to the [next level](./bandit1.md)

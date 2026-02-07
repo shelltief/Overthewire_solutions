@@ -2,6 +2,9 @@ site_name: Overthewire Solutions
 
 theme:
   name: material
+  features:
+    - content.code.copy
+    - content.code.annotate
 
 nav:
   - Introduction: 'index.md'
@@ -62,6 +65,10 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
 
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

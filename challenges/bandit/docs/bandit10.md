@@ -30,15 +30,13 @@ check the base64 [gnu documentation page](https://www.gnu.org/software/coreutils
 decode our password string.
 
 
-<details>
-<summary><h3 style="display:inline-block">Full Solution</h3></summary>
+??? note "Full Solution"
 
-We will use the option `-d` (decode) of the `base64` utility.<br/>
-Thus, running the following command :
-```bash
-base64 -d data.txt
-```
-will print a string which should look like this one : `The password is password_string` to stdout.
-</details>
+    We will use the option `-d` (decode) of the `base64` utility.<br/>
+    Thus, running the following command :
+    ```bash
+    base64 -d data.txt
+    ```
+    will print a string which should look like this one : `The password is password_string` to stdout.
 
 You can now jump to the [next level](./bandit11.md)

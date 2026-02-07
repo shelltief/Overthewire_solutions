@@ -31,121 +31,95 @@ Now, let's dive into how we are going to actually view and access the file in th
 ## Let's move, I want to be close to the file I'm looking for
 
 
-<details>
-<summary><h3 style="display:inline-block">Part 1 : the cd builtin</h3></summary>
+??? note "Part 1 : the cd builtin"
 
-Let's now meet a new friend, the `cd` [**builtin**](https://www.gnu.org/software/bash/manual/html_node/Shell-Builtin-Commands.html). We will need to use 
-this builtin to navigate to the directory named **inhere**.
-
-
-<details>
-<summary>Hint</summary>
-
-`man cd` doesn't work here. Indeed, the `cd` builtin is part of the shell you're using (I'll assume you're using bash). 
-
-However, you can view the [**SHELL BUILTIN COMMANDS**](https://www.gnu.org/software/bash/manual/html_node/Shell-Builtin-Commands.html) section of the 
-gnu bash manual.
-
-</details>
-
-<details>
-<summary>Solution</summary>
-
-To effectively change directory to the **inhere** directory, we need to run the command `cd inhere`.
-</details>
-</details>
+    Let's now meet a new friend, the `cd` [**builtin**](https://www.gnu.org/software/bash/manual/html_node/Shell-Builtin-Commands.html). We will need to use 
+    this builtin to navigate to the directory named **inhere**.
 
 
-<details>
-<summary><h3 style="display:inline-block">Part 2 : listing hidden files</h3></summary>
+    ??? tip "Hint"
 
-Now that we are in the **inhere** directory, if we run the `ls` command, this is the output we get :
-```bash
-bandit3@bandit:~/inhere$ ls
-bandit3@bandit:~/inhere$
-```
-However, we know that there is a hidden file in this directory, we need to find a way to retrive that file.
+        `man cd` doesn't work here. Indeed, the `cd` builtin is part of the shell
+        you're using (I'll assume you're using bash). 
 
+        However, you can view the
+        [**SHELL BUILTIN COMMANDS**](https://www.gnu.org/software/bash/manual/html_node/Shell-Builtin-Commands.html)
+        section of the gnu bash manual.
 
-<details>
-<summary>Hint</summary>
+    ??? success "Solution"
 
-Look at the **DESCRIPTION** section of [ls](https://www.gnu.org/software/coreutils/manual/coreutils.html#ls-invocation). 
-The option you're looking for should be near the top
+        To effectively change directory to the **inhere** directory, we need to run the command `cd inhere`.
 
-</details>
+??? note "Part 2 : listing hidden files"
 
-<details>
-<summary>Solution</summary>
+    Now that we are in the **inhere** directory, if we run the `ls` command, this is the output we get :
 
-The `-a` or `--all` is the option you're looking for. It allows to not ignore the entries starting with a `.`.<br/>
-This is the output we get after listing all of our directory contents : 
+    ```bash
+    bandit3@bandit:~/inhere$ ls
+    bandit3@bandit:~/inhere$
+    ```
 
-```bash
-bandit3@bandit:~/inhere$ ls --all
-.  ..  .hidden
-bandit3@bandit:~/inhere$
-```
-Now that we know that the file we're are looking for, we can print its content with `cat .hidden`
-</details>
-</details>
+    However, we know that there is a hidden file in this directory, we need to find a way to retrive that file.
 
+    ??? tip "Hint"
 
-<details>
-<summary><h3 style="display:inline-block">Full Solution</h3></summary>
+        Look at the **DESCRIPTION** section of
+        [ls](https://www.gnu.org/software/coreutils/manual/coreutils.html#ls-invocation). 
+        The option you're looking for should be near the top
 
-1. `cd inhere` to change directory to the inhere directory
-2. `ls --all` to print all the contents of the inhere directory
-3. `cat .hidden` to print the hidden file
-</details>
+    ??? success "Solution"
+
+        The `-a` or `--all` is the option you're looking for. It allows to not ignore the entries starting with a `.`.<br/>
+        This is the output we get after listing all of our directory contents : 
+
+        ```bash
+        bandit3@bandit:~/inhere$ ls --all
+        .  ..  .hidden
+        bandit3@bandit:~/inhere$
+        ```
+
+        Now that we know that the file we're are looking for, we can print its content with `cat .hidden`
+
+??? note "Full Solution"
+
+    1. `cd inhere` to change directory to the inhere directory
+    2. `ls --all` to print all the contents of the inhere directory
+    3. `cat .hidden` to print the hidden file
 
 ## Why move ? I can do everything from my home directory
 
 The idea is basically the same than if we wanted to move, with a slight variation.
 
+??? note "Part 1 : listing the directory contents"
 
-<details>
-<summary><h3 style="display:inline-block">Part 1 : listing the directory contents</h3></summary>
+    Up until now, we used the `ls` utility with options but without any argument.
+    We need to find a way to specify a directory to the `ls` command.
 
-Up until now, we used the `ls` utility with options but without any argument. We need to find a way to specify a directory to the `ls` command.
+    ??? tip "Hint"
 
+        Once again, we'll look in the [ls](https://www.gnu.org/software/coreutils/manual/coreutils.html#ls-invocation) 
+        man page, but this time we need to have a look in the **SYNOPSYS** section.
 
-<details>
-<summary>Hint</summary>
+    ??? success "Solution"
 
-Once again, we'll look in the [ls](https://www.gnu.org/software/coreutils/manual/coreutils.html#ls-invocation) 
-man page, but this time we need to have a look in the **SYNOPSYS** section.
-</details>
+        The command `ls --all inhere` it the command we're looking for. this command will allow us to list the contents of the inhere directory, 
+        without moving nor ignoring the hidden files.<br/>
+        Running it gives us the following output :
 
-<details>
-<summary>Solution</summary>
+        ```bash
+        bandit3@bandit:~$ ls --all inhere
+        .  ..  .hidden
+        bandit3@bandit:~$
+        ```
 
-The command `ls --all inhere` it the command we're looking for. this command will allow us to list the contents of the inhere directory, 
-without moving nor ignoring the hidden files.<br/>
-Running it gives us the following output :
-```bash
-bandit3@bandit:~$ ls --all inhere
-.  ..  .hidden
-bandit3@bandit:~$
-```
-</details>
-</details>
+??? note "Part 2 : printing the hidden file"
 
+    Now that we now that the hidden file in the inhere directory is called `.hidden`, we can run `cat` and give it the relative path 
+    to the `.hidden` file as an argument : `cat inhere/.hidden`. This will dump the password string to stdout
 
-<details>
-<summary><h3 style="display:inline-block">Part 2 : printing the hidden file</h3></summary>
+??? note "Full Solution"
 
-
-Now that we now that the hidden file in the inhere directory is called `.hidden`, we can run `cat` and give it the relative path 
-to the `.hidden` file as an argument : `cat inhere/.hidden`. This will dump the password string to stdout
-</details>
-
-
-<details>
-<summary><h3 style="display:inline-block">Full Solution</h3></summary>
-
-1. `ls --all inhere` to list the contents of the inhere directory
-2. `cat inhere/.hidden` to print the contents of the `.hidden` file
-</details>
+    1. `ls --all inhere` to list the contents of the inhere directory
+    2. `cat inhere/.hidden` to print the contents of the `.hidden` file
 
 You can now jump to the [next level](./bandit4.md)
