@@ -1,11 +1,10 @@
-site_name: Overthewire Solutions
+site_name: Overthewire Challenges
 
 theme:
   name: material
   features:
     - content.code.copy
     - content.code.annotate
-    - content.action.
 
 nav:
   - Introduction: 'index.md'
