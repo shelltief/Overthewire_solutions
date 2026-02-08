@@ -5,6 +5,7 @@ theme:
   features:
     - content.code.copy
     - content.code.annotate
+    - content.action.
 
 nav:
   - Introduction: 'index.md'
@@ -71,4 +72,5 @@ markdown_extensions:
   - pymdownx.snippets
 
 extra_javascript:
+  - assets/plausible.js
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
