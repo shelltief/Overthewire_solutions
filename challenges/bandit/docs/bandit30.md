@@ -20,66 +20,50 @@ Clone the repository and find the password for the next level.
 
 Once again, if you need information about retrieving the repository, go check [bandit27](./bandit27.md) level.
 
-Here, we can notice that nothing we did precedently works. As we had to do with the other levels, we have to learn another 
-git capability and use it to retrieve the password.
+Here, we can notice that nothing we did precedently works. As we had to do with the other levels, we have to learn
+another git capability and use it to retrieve the password.
 
 
-<details>
-<summary><h3 style="display:inline-block">Part 1 : Viewing the points of interest in the history</h3></summary>
+??? note "Part 1 : Viewing the points of interest in the history"
 
-One capability of git is to **tag** some commits as important, let's see if we can use it to our advantage and 
-retrieve the password.
+    One capability of git is to **tag** some commits as important, let's see if we can use it to our advantage
+    and retrieve the password.
 
-<details>
-<summary>Hint</summary>
+    ??? tip "Hint"
 
-Using the [git-tag](https://git-scm.com/docs/git-tag) command, can you figure out how to view all the tags of the 
-git repository?
-</details>
+        Using the [git-tag](https://git-scm.com/docs/git-tag) command, can you figure out how to view all the tags
+        of the git repository?
 
-<details>
-<summary>Solution</summary>
+    ??? success "Solution"
 
-Let's run the following command :
-```bash
-git tag
-```
-This allows us to list all the tags within the git repository. This command outputs a `secret` tag which seems to be the door that 
-separates us from our password.
+        Let's run the following command :
+        ```bash
+        git tag
+        ```
+        This allows us to list all the tags within the git repository. This command outputs a `secret` tag which
+        seems to be the door that separates us from our password.
 
-</details>
-</details>
+??? note "Part 2 : Retrieving the information"
 
+    Now that we got our tag, we have to retrieve the information that's hidden within it.
 
-<details>
-<summary><h3 style="display:inline-block">Part 2 : Retrieving the information</h3></summary>
+    ??? tip "Hint"
 
-Now that we got our tag, we have to retrieve the information that's hidden within it.
-<details>
-<summary>Hint</summary>
+        Using again the [git-show](https://git-scm.com/docs/git-show) man page, can you
+        find a way to retrieve the informations within the `secret` tag?
 
-Using again the [git-show](https://git-scm.com/docs/git-show) man page, can you find a way to retrieve the informations within the 
-`secret` tag?
-</details>
+    ??? success "Solution"
 
-<details>
-<summary>Solution</summary>
+        Let's run the following command :
+        ```bash
+        git show secret
+        ```
+        This command lets us view the informations that were added during the tag creation. Of course
+        they include this level password, thus allowing us to jump to the next level.
 
-Let's run the following command :
-```bash
-git show secret
-```
-This command let's us view the informations that were added during the tag creation. Of course they include this level password, thus allowing 
-us to jump to the next level.
-</details>
-</details>
+??? note "Full Solution"
 
-<details>
-<summary><h3 style="display:inline-block">Full Solution</h3></summary>
-
-1. `git tag` to list all the tags in the repository.
-2. `git show secret` to view the informations within the secret tag and retrieve our password.
-
-</details>
+    1. `git tag` to list all the tags in the repository.
+    2. `git show secret` to view the informations within the secret tag and retrieve our password.
 
 You can now jump to the [next level](./bandit31.md)

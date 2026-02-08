@@ -68,7 +68,7 @@ we need to set up a server in order for our `suconnect` client to communicate wi
 
     ??? tip "Hint"
 
-        By using the [Helpful Reading Material](#Helpful-Reading-Material), can you figure out a
+        By using the [Helpful Reading Material](#helpful-reading-material), can you figure out a
         way to run our server as a background process so that you can continue communicating
         with the server using your current terminal session?
 

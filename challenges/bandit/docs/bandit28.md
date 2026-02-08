@@ -15,7 +15,7 @@ Clone the repository and find the password for the next level.
 
 ## Helpful Reading Material
 
-- [giteveryday](https://www.git-scm.com/docs/giteveryday) *A useful minimum set of commands for Everyday Git*
+- [Git Everyday Commands](https://www.git-scm.com/docs/giteveryday) *A useful minimum set of commands for Everyday Git*
 
 ## Where to start?
 
@@ -24,62 +24,55 @@ For more informations about how to clone the repository, see the [previous level
 From now on, I'll assume that you already retrieved the git repository in your temporary directory.
 
 
-<details>
-<summary><h3 style="display:inline-block">Part 1 : Viewing the history</h3></summary>
+??? note "Part 1 : Viewing the history"
 
-In this level, when we `cat` the README.md file in the directory, we have a series of x's instead of the password 
-like in the previous level. Of course, this series of x's isn't the password so we'll need to find a way to retrieve 
-it.
+    In this level, when we `cat` the README.md file in the directory, we have a series of x's instead of the password
+    like in the previous level. Of course, this series of x's isn't the password so we'll need to find a way to retrieve
+    it.
 
-<details>
-<summary>Hint</summary>
+    ??? tip "Hint"
 
-As git stores the whole history of the file modifications, looking at the [git-log](https://git-scm.com/docs/git-log) 
-man page, can you figure out a way to view the history of the git repository?
-</details>
+        As git stores the whole history of the file modifications, looking at the
+        [git-log](https://git-scm.com/docs/git-log) man page, can you figure out a way to
+        view the history of the git repository?
 
-<details>
-<summary>Solution</summary>
+    ??? success "Solution"
 
-By running the `git-log` command, we can see that the commit history talks about missing data that has been added and 
-the commit we're on talks about a memory leak. Our next goal will be to check for differences between the `HEAD` which is 
-the point we're on in the history (usually after the last commit) and the commit that talks about missing data.
-</details>
-</details>
+        By running the `git-log` command, we can see that the commit history talks about missing data
+        that has been added and the commit we're on talks about a memory leak. Our next goal will be
+        to check for differences between the `HEAD` which is the point we're on in the history
+        (usually after the last commit) and the commit that talks about missing data.
 
+??? note "Part 2 : Retrieving the password"
 
-<details>
-<summary><h3 style="display:inline-block">Part 2 : Retrieving the password</h3></summary>
+    Now that we know where the information we'd like to retrieve might be, we need for a way to check
+    if this information is actually there.
 
-Now that we know where the information we'd like to retrieve might be, we need for a way to check if this information 
-is actually there.
-<details>
-<summary>Hint</summary>
+    ??? tip "Hint"
 
-Looking at the [git-show](https://git-scm.com/docs/git-show) man page, can you figure out a way to view the differences 
-between the README at the current commit and the README at the previous commit?
-</details>
+        Looking at the [git-show](https://git-scm.com/docs/git-show) man page, can you figure
+        out a way to view the differences between the README at the current commit and the
+        README at the previous commit?
 
-<details>
-<summary>Solution</summary>
+    ??? success "Solution"
 
-Using the `git-show` command, we can provide the hash of the commit we want to view 
+        Using the `git-show` command, we can provide the hash of the commit we want to view
 
-> Note : We don't need to provide the full hash and the 5 first characters are usually enough
+        ???+ info
 
-Let's run the following command in our terminal :
-```bash
-git show f08b9
-```
-This will print the last change in the `README.md` file, thus printing the password string.
-</details>
-</details>
+            We don't need to provide the full hash and the 5 first characters are usually enough
 
-<details>
-<summary><h3 style="display:inline-block">Full Solution</h3></summary>
+        Here, we have that the commit `f08b9` is mentionning an info leak. Let's try to see what
+        are the differences between this commit and the commit we're looking at.<br/>
+        Let's run the following command in our terminal :
+        ```bash
+        git show f08b9
+        ```
+        This will print the last change in the `README.md` file, thus printing the password string.
 
-1. `git log` to view all the commit history.
-2. `git show f08b9` to view the difference with the previous commit.
-</details>
+??? note "Full Solution"
+
+    1. `git log` to view all the commit history.
+    2. `git show f08b9` to view the difference with the previous commit.
 
 You can now jump to the [next level](./bandit29.md)

@@ -89,7 +89,7 @@ and then come back when the script is in front of your eyes.
 
     ??? success "Solution"
 
-        For this basic script, we'll copy the model of [bandit22](./bandit22).
+        For this basic script, we'll copy the model of [bandit22](./bandit22.md).
         This means that we'll write a simple script that prints the password to a custom file.
         Here is the script we'll use :
         ```bash
@@ -191,7 +191,7 @@ and then come back when the script is in front of your eyes.
 
     ??? tip "Hint"
 
-        Using what we did before and the [Helpful Reading Material](#Helpful-Reading-Material),
+        Using what we did before and the [Helpful Reading Material](#helpful-reading-material),
         can you figure out a way to write a script that will be able to create a file in our temporary
         directory? You will have to make another call to chmod to get all the file permissions right.
 

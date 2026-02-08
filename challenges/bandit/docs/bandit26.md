@@ -10,14 +10,10 @@ Good job getting a shell! Now hurry and grab the password for bandit27!
 
 ## Where to start?
 
-This level is the exact same as the [level 19](./bandit19.md). If 
-you need any information, go check this level.
+This level is the exact same as the [level 19](./bandit19.md). If you need any information, go check this level.
 
-<details>
-<summary><h3 style="display:inline-block">Full Solution</h3></summary>
+??? note "Full Solution"
 
-1. `./bandit27-do cat /etc/bandit_pass/bandit27` to print the bandit27 password to standard output.
-
-</details>
+    1. `./bandit27-do cat /etc/bandit_pass/bandit27` to print the bandit27 password to standard output.
 
 You can now jump to the [next level](./bandit27.md)
