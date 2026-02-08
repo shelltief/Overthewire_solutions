@@ -89,7 +89,7 @@ We'll try to find the options one after the other into the [find(1)](https://www
     Although this command gives the right answer, it presents a
     [security concern](https://www.gnu.org/software/findutils/manual/html_mono/find.html#Problems-with-_002dexec-and-filenames). 
     Indeed, if an attacker puts a special filename in your directory, it could lead to the deletion of all of your data. Let's see a safe example right now.
-    Try running the following [script](../scripts/bandit5.sh) and understanding its output (you can copy and paste the script into you terminal window): 
+    Try running the following [script](./scripts/bandit5.sh) and understanding its output (you can copy and paste the script into you terminal window): 
 
     ```bash
     --8<-- "challenges/bandit/scripts/bandit5.sh"

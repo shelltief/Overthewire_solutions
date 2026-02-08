@@ -54,7 +54,7 @@ General Overview of OverTheWire Challenges:
 ### Popular Wargames on OverTheWire
 
 -	[Bandit](https://overthewire.org/wargames/bandit): Focuses on basic Linux command-line skills, file manipulation, and introductory scripting.
-	-	[Walkthrough](./bandit/docs/index.md)
+	-	[Walkthrough](./bandit/index.md)
 -	Leviathan: Introduces basic binary exploitation and reverse engineering concepts.
 -	Narnia: Dives deeper into binary exploitation, including stack overflows and format string vulnerabilities.
 -	Natas: Focuses on web application security, covering common web vulnerabilities such as SQL injection and XSS.
@@ -73,7 +73,7 @@ practice and refine their hacking abilities in a controlled and educational sett
 ## What now ?
 
 Now, you can let me walk you through the solutions of the first challenge, [bandit](https://overthewire.org/wargames/bandit/).
-The solutions are available [here](./bandit/docs/index.md)
+The solutions are available [here](./bandit/index.md)
 
 ## Must Read
 
@@ -113,4 +113,4 @@ to learn more concepts that revolve around the documentation (and that's also a 
 So I hope you'll find all the work here useful, it was fun yet painful doing all the research work
 but it helped me understand a lot of things about programming and I hope it will help you too.
 
-Without further ado, let's dive right into the [first challenge](./bandit/docs/index.md)
+Without further ado, let's dive right into the [first challenge](./bandit/index.md)
