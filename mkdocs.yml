@@ -5,6 +5,17 @@ theme:
   features:
     - content.code.copy
     - content.code.annotate
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+      accent: light-blue
+    - scheme: slate
+      toggle:
+        icon: material/brightness-3
+        name: Switch to light mode
+      accent: light-blue
 
 nav:
   - Introduction: 'index.md'
