@@ -56,6 +56,8 @@ nav:
     - Level 31 -> 32: 'bandit/bandit31.md'
     - Level 32 -> 33: 'bandit/bandit32.md'
     - Level 33 -> 34: 'bandit/bandit33.md'
+  - Narnia:
+    - Introduction: 'narnia/index.md'
   - About:
     - License: 'license.md'
 
@@ -73,6 +75,10 @@ plugins:
             show_source: true
 
 markdown_extensions:
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.details
@@ -83,3 +89,6 @@ markdown_extensions:
 
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - stylesheets/admonitions_extra.css
