@@ -104,7 +104,7 @@ Then, we will repeatedly uncompress our data using different compression utiliti
     Running the following sequence of commands :
 
     ```bash
-    --8<-- "challenges/bandit/scripts/bandit12.sh"
+    --8<-- "resources/bandit/bandit12.sh"
     ```
 
     should fully uncompress the file data.txt. We can now run one last time the `file` command on our file **data8**.

@@ -92,7 +92,7 @@ We'll try to find the options one after the other into the [find(1)](https://www
     Try running the following [script](./scripts/bandit5.sh) and understanding its output (you can copy and paste the script into you terminal window): 
 
     ```bash
-    --8<-- "challenges/bandit/scripts/bandit5.sh"
+    --8<-- "resources/bandit/bandit5.sh"
     ```
 
     In this example we see that our /tmp/testrm directory has been deleted even though we didn't intended at all to do so. 
